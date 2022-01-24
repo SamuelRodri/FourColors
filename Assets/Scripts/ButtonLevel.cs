@@ -8,6 +8,7 @@ public class ButtonLevel : MonoBehaviour
 {
     string level;
     Text text;
+    private bool completed;
 
     private void Start()
     {
@@ -17,6 +18,7 @@ public class ButtonLevel : MonoBehaviour
         text.fontSize = 20;
         text.fontStyle = FontStyle.Bold;
         text.color = new Color(1, 1, 1);
+        completed = false;
     }
 
     public void GoToLevel()

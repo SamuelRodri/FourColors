@@ -14,12 +14,6 @@ public class Piece : MonoBehaviour
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();    
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0))
@@ -28,10 +22,7 @@ public class Piece : MonoBehaviour
         }
     }
 
-    public void SetColor(Color color) {
-        GetComponent<SpriteRenderer>().color = color;
-    }
-
+    // Detect the adjacents pieces
     private void OnCollisionStay2D(Collision2D collision)
     {
         Piece piece = collision.gameObject.GetComponent<Piece>();

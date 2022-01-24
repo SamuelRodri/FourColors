@@ -14,28 +14,34 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private Image levelCompletedPanel;
 
+    private bool finish = false;
+
     // Start is called before the first frame update
     void Start()
     {
         actualColor = Colors.red;
     }
 
-    public void ColorPiece(Piece piece)
-    {
-        piece.GetComponent<SpriteRenderer>().material.color = colors[((int)actualColor)];
-        piece.mycolor = actualColor;
-        piece.tag = "Piece";
-
-        if (CheckPieces())
-        {
-            levelCompletedPanel.gameObject.SetActive(true);
-        }
-    }    
-
     public void ChangeActualColor(ColorButton button)
     {
         actualColor = button.mycolor;
     }
+
+    public void ColorPiece(Piece piece)
+    {
+        if (!finish)
+        {
+            piece.GetComponent<SpriteRenderer>().material.color = colors[((int)actualColor)];
+            piece.mycolor = actualColor;
+            piece.tag = "Piece";
+
+            if (CheckPieces())
+            {
+                finish = true;
+                levelCompletedPanel.gameObject.SetActive(true);
+            }
+        }
+    }    
 
     private bool CheckPieces()
     {
@@ -58,19 +64,5 @@ public class GameController : MonoBehaviour
             return true;
         }
         return false;        
-    }
-
-    public void BackMenu()
-    {
-        SceneManager.LoadScene("Menu");
-    }
-
-    public void NextLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    public void BackMain() {
-        SceneManager.LoadScene("Main");
     }
 }
