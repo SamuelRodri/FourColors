@@ -41,9 +41,15 @@ public class MainController : MonoBehaviour
         
     }
 
+    private IEnumerator WaitForSceneLoad()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("Menu");
+    }
+
     public void LoadMenu()
     {
-        SceneManager.LoadScene("Menu");
+        StartCoroutine(WaitForSceneLoad());
     }
 
     public void LoadCredits()
